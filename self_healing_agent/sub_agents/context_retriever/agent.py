@@ -7,7 +7,7 @@ def get_context(log: str):
     from agents.shared_retriever import retriever
     return retriever.get_relevant_documents(log)
 
-context_retriever_agent = ToolAgent(
+context_retriever = ToolAgent(
     name="context_retriever",
     model="gemini-2.5-pro",
     description="Fetches relevant Java source context for a given exception.",

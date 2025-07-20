@@ -11,7 +11,7 @@ mcp_tools = MCPToolset(
     tool_filter=["create_jira_ticket", "update_confluence_page", "create_github_issue"]
 )
 
-issue_creator_agent = Agent(
+issue_creator = Agent(
     name="issue_creator",
     model="gemini-2.5-pro",
     description="Creates JIRA/GitHub issues or Confluence updates for the exception fix.",
