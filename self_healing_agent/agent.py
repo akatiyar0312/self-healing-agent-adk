@@ -23,8 +23,8 @@ After each tool invocation, return:
 """,
     tools=[
         AgentTool(agent=log_analyzer),
-        AgentTool(agent=context_retriever_agent),
-        AgentTool(agent=issue_creator_agent),
+        AgentTool(agent=context_retriever),
+        AgentTool(agent=issue_creator),
     ]
 )
 
