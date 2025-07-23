@@ -1,20 +1,11 @@
-from google.adk.agents import Agent
-from google.adk.tools.mcp_tool import MCPToolset, StreamableHTTPConnectionParams
-from .prompt import ISSUE_CREATOR_PROMPT
-import os
+# fix_suggester.py
+from google.adk.agents import LlmAgent
+from .prompt import FIX_SUGGESTER_PROMPT
 
-mcp_tools = MCPToolset(
-    connection_params=StreamableHTTPConnectionParams(
-        url=os.getenv("MCP_TOOLBOX_URL"),
-        headers={"Authorization": f"Bearer {os.getenv('MCP_API_KEY')}"}
-    ),
-    tool_filter=["create_jira_ticket", "update_confluence_page", "create_github_issue"]
-)
-
-issue_creator = Agent(
-    name="issue_creator",
+# Simple Agent without tools, just uses the model and a prompt
+fix_suggester = LlmAgent(
+    name="fix_suggester",
     model="gemini-2.5-pro",
-    description="Creates JIRA/GitHub issues or Confluence updates for the exception fix.",
-    instruction=ISSUE_CREATOR_PROMPT,
-    tools=mcp_tools.tools
+    description="Suggests Java code fixes based on exception and context.",
+    instruction=FIX_SUGGESTER_PROMPT
 )
